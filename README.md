@@ -19,6 +19,11 @@ GitHub Actions를 통해 변경 내용을 자동 커밋하는 프로젝트입니
 
 수집 스크립트는 `python src/collect_weather.py`로 실행합니다.
 
+## 날씨 웹앱
+
+`index.html`은 월별 CSV의 마지막 두 관측값을 비교해 최신 날씨와 변화량을 보여줍니다.
+로컬에서는 프로젝트 루트에서 웹서버를 실행한 뒤 브라우저로 접속해야 CSV를 읽을 수 있습니다.
+
 ## 자동 수집
 
 `.github/workflows/collect-weather.yml`이 다음 방식으로 실행됩니다.

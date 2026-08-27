@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Open-Meteo 데이터를 활용한 진주시 실시간 날씨 대시보드" />
+    <title>진주 날씨 한눈에</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="weather-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">JINJU WEATHER</p>
+          <h1>진주 날씨 한눈에</h1>
+        </div>
+        <button class="refresh-button" id="refreshButton" type="button" aria-label="날씨 새로고침">
+          <span aria-hidden="true">↻</span> 새로고침
+        </button>
+      </header>
+
+      <section class="hero-card" aria-live="polite">
+        <div class="hero-copy">
+          <div class="location-line"><span aria-hidden="true">●</span> 경상남도 진주시</div>
+          <p class="status-message" id="statusMessage">최신 관측 데이터를 불러오고 있습니다.</p>
+          <div class="temperature-row">
+            <span class="weather-icon" id="weatherIcon" aria-hidden="true">☀️</span>
+            <div>
+              <p class="temperature"><span id="temperature">--</span><small>°C</small></p>
+              <p class="weather-label" id="weatherLabel">데이터 확인 중</p>
+            </div>
+          </div>
+          <div class="change-pill" id="temperatureChange">직전 관측값을 확인하고 있어요</div>
+        </div>
+
+        <div class="observation-panel">
+          <p>최근 관측</p>
+          <strong id="observedTime">--</strong>
+          <span id="dataAge">Open-Meteo 자동 수집 데이터</span>
+        </div>
+      </section>
+
+      <section class="metrics-grid" aria-label="상세 날씨">
+        <article class="metric-card">
+          <span class="metric-icon" aria-hidden="true">🌡️</span>
+          <div><p>체감온도</p><strong><span id="apparentTemperature">--</span>°</strong></div>
+          <small id="apparentChange">직전 대비 --</small>
+        </article>
+        <article class="metric-card">
+          <span class="metric-icon" aria-hidden="true">💧</span>
+          <div><p>습도</p><strong><span id="humidity">--</span>%</strong></div>
+          <small id="humidityChange">직전 대비 --</small>
+        </article>
+        <article class="metric-card">
+          <span class="metric-icon" aria-hidden="true">☔</span>
+          <div><p>강수량</p><strong><span id="precipitation">--</span> mm</strong></div>
+          <small id="precipitationChange">직전 대비 --</small>
+        </article>
+        <article class="metric-card">
+          <span class="metric-icon" aria-hidden="true">🍃</span>
+          <div><p>바람</p><strong><span id="windSpeed">--</span> km/h</strong></div>
+          <small id="windDirection">풍향 --</small>
+        </article>
+      </section>
+
+      <section class="comparison-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RECENT TREND</p>
+            <h2>최근 두 관측 비교</h2>
+          </div>
+          <span class="live-badge"><i></i> 자동 업데이트</span>
+        </div>
+        <div class="comparison-grid">
+          <article>
+            <p>직전 관측</p>
+            <strong id="previousTemperature">--°</strong>
+            <span id="previousTime">--</span>
+          </article>
+          <div class="trend-arrow" id="trendArrow" aria-hidden="true">→</div>
+          <article class="latest-reading">
+            <p>최신 관측</p>
+            <strong id="latestTemperature">--°</strong>
+            <span id="latestTime">--</span>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        <span>데이터 제공 Open-Meteo</span>
+        <span>위도 35.18 · 경도 128.11</span>
+      </footer>
+    </main>
+  </body>
+</html>
