@@ -1,0 +1,47 @@
+name: Collect Open-Meteo weather
+
+on:
+  schedule:
+    # GitHub schedules use UTC by default. Every hour is identical in UTC and KST.
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weather-data-collection
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect current weather
+        run: python src/collect_weather.py
+
+      - name: Commit new weather data
+        shell: bash
+        run: |
+          git add data/
+
+          if git diff --cached --quiet; then
+            echo "No new weather data to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: collect Open-Meteo weather data"
+          git push
+
