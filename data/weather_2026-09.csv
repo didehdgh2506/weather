@@ -1,0 +1,2 @@
+﻿observed_at,latitude,longitude,temperature_c,apparent_temperature_c,relative_humidity_pct,precipitation_mm,weather_code,wind_speed_kmh,wind_direction_deg
+2026-09-01T00:00:00+09:00,35.18,128.11,24.4,28.9,94,0.0,0,8.6,165
